@@ -1,11 +1,7 @@
-import 'package:alpha_store/core/layout/widgets/table_display.dart';
 import 'package:alpha_store/core/shared/entities/feature_action.dart';
 import 'package:alpha_store/core/shared/widgets/actions_bar.dart';
 import 'package:alpha_store/core/shared/widgets/search_field.dart';
-import 'package:alpha_store/core/shared/widgets/table_widgets.dart';
-import 'package:alpha_store/core/util/format_util.dart';
 import 'package:alpha_store/features/products/domain/entities/category.dart';
-import 'package:alpha_store/features/products/domain/entities/product.dart';
 import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products_state.dart';
