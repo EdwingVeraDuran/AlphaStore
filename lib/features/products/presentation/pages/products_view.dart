@@ -12,6 +12,7 @@ import 'package:alpha_store/features/products/presentation/cubit/products_state.
 import 'package:alpha_store/features/products/presentation/dialogs/categories_sheet.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/create_product_sheet.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/orders_sheet.dart';
+import 'package:alpha_store/features/products/presentation/widgets/products_table.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
@@ -91,52 +92,12 @@ class _ProductsViewState extends State<ProductsView> {
             }
 
             if (state is ProductsList) {
-              return TableDisplay(
-                tableHeader: header(),
-                tableData: data(state.products),
-              );
+              return ProductsTable(state.products, categories);
             }
             return Center(child: CircularProgressIndicator());
           },
         ),
       ],
     );
-  }
-
-  TableRow header() {
-    return TableHeader(
-      cells: [
-        tableHeaderCell('Código'),
-        tableHeaderCell('Nombre'),
-        tableHeaderCell('Unidades'),
-        tableHeaderCell('Categoria'),
-        tableHeaderCell('Precio Compra', true),
-        tableHeaderCell('Precio Venta', true),
-      ],
-    );
-  }
-
-  List<TableRow> data(List<Product> products) {
-    return products
-        .map(
-          (e) => TableRow(
-            cells: [
-              tableCell(FormatUtil.formattedCode(e.code)),
-              tableCell(e.name),
-              tableCell(e.stock.toString()),
-              tableCell(
-                categories
-                    .firstWhere(
-                      (category) => category.id == e.categoryId,
-                      orElse: () => Category(id: 0, name: 'Sin categoría'),
-                    )
-                    .name,
-              ),
-              tableCell(FormatUtil.formattedPrice(e.buyPrice), true),
-              tableCell(FormatUtil.formattedPrice(e.sellPrice), true),
-            ],
-          ),
-        )
-        .toList();
   }
 }
