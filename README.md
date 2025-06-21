@@ -22,11 +22,11 @@
 
 ## 🛠️ Tech Stack
 
-- 🧩 Flutter (Windows build)
-- 🧠 BLoC (state management)
-- 🧰 Supabase (backend & database)
-- 🎨 [shadcn/ui](https://ui.shadcn.dev/) (for beautiful component design)
-- 🔆 lucide-react icons
+- 🧩 [Flutter](https://flutter.dev/) (Windows build)
+- 🧠 [BLoC](https://bloclibrary.dev/) (state management)
+- 🧰 [Supabase](https://supabase.com/) (backend & database)
+- 🎨 [shadcn_flutter/ui](https://pub.dev/packages/shadcn_flutter) (for beautiful component design)
+- 🔆 [lucide icons](https://lucide.dev/) (for icons)
 
 ---
 
