@@ -1,6 +1,7 @@
 import 'package:alpha_store/core/layout/widgets/section_title.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories_state.dart';
+import 'package:alpha_store/features/products/presentation/dialogs/create_category_popover.dart';
 import 'package:alpha_store/features/products/presentation/widgets/categories_table.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
@@ -30,7 +31,14 @@ class _CategoriesSectionState extends State<CategoriesSection> {
             OutlineButton(
               trailing: Icon(LucideIcons.circlePlus),
               child: Text('Crear categoría'),
-              onPressed: () {},
+              onPressed:
+                  () => showPopover(
+                    context: context,
+                    alignment: Alignment.topCenter,
+                    //TODO: Fix popover position
+                    offset: Offset(300, -220),
+                    builder: (context) => CreateCategoryPopover(),
+                  ),
             ),
           ],
         ),
