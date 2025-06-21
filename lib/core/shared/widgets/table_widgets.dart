@@ -18,9 +18,7 @@ TableCell tableCell(String label, [bool alignRight = false]) {
         alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(label),
       ),
-      onTap: () {
-        print(label);
-      },
+      onTap: () {},
     ),
   );
 }

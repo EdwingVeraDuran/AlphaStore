@@ -15,7 +15,6 @@ class _AuthPageState extends State<AuthPage> {
 
   void login() {
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      print('Campos vacíos');
       //TODO: Add toast
     }
 
