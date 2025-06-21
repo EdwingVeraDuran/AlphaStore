@@ -1,4 +1,5 @@
 import 'package:alpha_store/core/shared/entities/feature_action.dart';
+import 'package:alpha_store/core/shared/widgets/action_button.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ActionsBar extends StatelessWidget {
@@ -11,10 +12,10 @@ class ActionsBar extends StatelessWidget {
 
     for (int i = 0; i < actions.length; i++) {
       children.add(
-        OutlineButton(
-          trailing: Icon(actions[i].icon),
+        ActionButton(
+          icon: actions[i].icon,
           onPressed: actions[i].onPressed,
-          child: Text(actions[i].label),
+          label: actions[i].label,
         ),
       );
 
