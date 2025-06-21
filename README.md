@@ -1,6 +1,3 @@
-# alpha_store
-
-A new Flutter project.
 # 🛍️ Alpha Store
 
 **Alpha Store** is a modern and intuitive business management application designed for entrepreneurs who want full control of their business in a **simple**, **complete**, and **interactive** way.
