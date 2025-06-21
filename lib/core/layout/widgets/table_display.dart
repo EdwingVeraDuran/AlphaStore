@@ -25,7 +25,7 @@ class _TableDisplayState extends State<TableDisplay> {
           clipBehavior: Clip.hardEdge,
           child: Table(rows: [widget.tableHeader, ...widget.tableData]),
         ),
-        Gap(16),
+        Gap(24),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [rowsNumber(), Gap(32), pagination()],
