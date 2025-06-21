@@ -1,3 +1,4 @@
+import 'package:alpha_store/core/layout/dialogs/settings_dialog.dart';
 import 'package:alpha_store/core/layout/widgets/sidebar_tile.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,11 @@ class AppActions extends StatelessWidget {
         SidebarTile(
           icon: LucideIcons.settings,
           label: 'Configuración',
-          onPressed: () {},
+          onPressed:
+              () => showDialog(
+                context: context,
+                builder: (context) => SettingsDialog(),
+              ),
         ),
         SidebarTile(
           icon: LucideIcons.logOut,
