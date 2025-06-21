@@ -1,3 +1,5 @@
+import 'package:alpha_store/features/products/domain/entities/order_item.dart';
+
 class OrderDetail {
   final int? id;
   final int orderId;
@@ -33,6 +35,17 @@ class OrderDetail {
       amount: map['amount'],
       unitPrice: (map['unit_price'] as num).toDouble(),
       subtotal: (map['subtotal'] as num).toDouble(),
+    );
+  }
+
+  factory OrderDetail.fromItem(OrderItem orderItem, int orderId) {
+    return OrderDetail(
+      id: null,
+      orderId: orderId,
+      productId: orderItem.product.id!,
+      amount: orderItem.amount,
+      unitPrice: orderItem.product.buyPrice,
+      subtotal: orderItem.totalPrice,
     );
   }
 }

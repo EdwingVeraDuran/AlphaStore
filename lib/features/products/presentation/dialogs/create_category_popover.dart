@@ -12,7 +12,7 @@ class CreateCategoryPopover extends StatefulWidget {
 class _CreateCategoryPopoverState extends State<CreateCategoryPopover> {
   final _categoryController = TextEditingController();
 
-  void addCategory(String category) async {
+  void addCategory(String category) {
     if (category.isEmpty) return;
     _categoryController.clear();
 

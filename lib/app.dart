@@ -1,12 +1,14 @@
-import 'package:alpha_store/core/injection_container.dart';
+import 'package:alpha_store/core/util/injection_container.dart';
 import 'package:alpha_store/core/layout/pages/layout_page.dart';
 import 'package:alpha_store/features/auth/domain/repos/auth_repo.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_state.dart';
 import 'package:alpha_store/features/auth/presentation/pages/auth_page.dart';
 import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
+import 'package:alpha_store/features/products/domain/repos/orders_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories_cubit.dart';
+import 'package:alpha_store/features/products/presentation/cubit/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
@@ -20,6 +22,7 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => getIt<ProductsRepo>()),
         RepositoryProvider(create: (context) => getIt<CategoriesRepo>()),
+        RepositoryProvider(create: (context) => getIt<OrdersRepo>()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -35,7 +38,10 @@ class App extends StatelessWidget {
           BlocProvider(
             create:
                 (context) =>
-                    CategoriesCubit(productsRepo: getIt<CategoriesRepo>()),
+                    CategoriesCubit(categoriesRepo: getIt<CategoriesRepo>()),
+          ),
+          BlocProvider(
+            create: (context) => OrdersCubit(ordersRepo: getIt<OrdersRepo>()),
           ),
         ],
         child: ShadcnApp(

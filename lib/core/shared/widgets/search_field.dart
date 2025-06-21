@@ -1,7 +1,7 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class SearchField extends StatelessWidget {
-  //TODO: Add controller
+  //TODO: Add controller and onChanged callback
   const SearchField({super.key});
 
   @override

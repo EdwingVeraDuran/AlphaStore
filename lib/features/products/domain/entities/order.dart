@@ -1,18 +1,18 @@
 class Order {
   final int? id;
-  final DateTime date;
+  final DateTime createdAt;
   final double total;
 
-  Order({required this.id, required this.date, required this.total});
+  Order({required this.id, required this.createdAt, required this.total});
 
   Map<String, dynamic> toMap() => {
-    'date': date.toIso8601String(),
+    'created_at': createdAt.toIso8601String(),
     'total': total,
   };
 
   factory Order.fromMap(Map<String, dynamic> map) => Order(
     id: map['id'],
-    date: map['date'],
+    createdAt: DateTime.parse(map['created_at']),
     total: (map['total'] as num).toDouble(),
   );
 }
