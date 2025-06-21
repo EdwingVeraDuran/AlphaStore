@@ -2,7 +2,6 @@ import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
 import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
 import 'package:alpha_store/core/util/injection_container.dart';
 import 'package:alpha_store/core/layout/pages/layout_page.dart';
-import 'package:alpha_store/features/auth/domain/repos/auth_repo.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_state.dart';
 import 'package:alpha_store/features/auth/presentation/pages/auth_page.dart';
@@ -29,23 +28,10 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => getIt<ThemeCubit>()),
-          BlocProvider(
-            create:
-                (context) =>
-                    AuthCubit(authRepo: getIt<AuthRepo>())..checkAuth(),
-          ),
-          BlocProvider(
-            create:
-                (context) => ProductsCubit(productsRepo: getIt<ProductsRepo>()),
-          ),
-          BlocProvider(
-            create:
-                (context) =>
-                    CategoriesCubit(categoriesRepo: getIt<CategoriesRepo>()),
-          ),
-          BlocProvider(
-            create: (context) => OrdersCubit(ordersRepo: getIt<OrdersRepo>()),
-          ),
+          BlocProvider(create: (context) => getIt<AuthCubit>()..checkAuth()),
+          BlocProvider(create: (context) => getIt<ProductsCubit>()),
+          BlocProvider(create: (context) => getIt<CategoriesCubit>()),
+          BlocProvider(create: (context) => getIt<OrdersCubit>()),
         ],
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
