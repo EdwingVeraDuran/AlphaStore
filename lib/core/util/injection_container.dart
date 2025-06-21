@@ -1,3 +1,4 @@
+import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
 import 'package:alpha_store/features/auth/data/supabase_auth_repo.dart';
 import 'package:alpha_store/features/auth/domain/repos/auth_repo.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
@@ -22,6 +23,7 @@ void setup() {
   getIt.registerLazySingleton<OrdersRepo>(() => SupabaseOrdersRepo());
 
   // Cubits
+  getIt.registerFactory(() => ThemeCubit());
   getIt.registerFactory(() => AuthCubit(authRepo: getIt<AuthRepo>()));
   getIt.registerFactory(
     () => ProductsCubit(productsRepo: getIt<ProductsRepo>()),

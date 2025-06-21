@@ -1,3 +1,5 @@
+import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
+import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
 import 'package:alpha_store/core/util/injection_container.dart';
 import 'package:alpha_store/core/layout/pages/layout_page.dart';
 import 'package:alpha_store/features/auth/domain/repos/auth_repo.dart';
@@ -26,6 +28,7 @@ class App extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
+          BlocProvider(create: (context) => getIt<ThemeCubit>()),
           BlocProvider(
             create:
                 (context) =>
@@ -44,24 +47,28 @@ class App extends StatelessWidget {
             create: (context) => OrdersCubit(ordersRepo: getIt<OrdersRepo>()),
           ),
         ],
-        child: ShadcnApp(
-          title: 'Alpha Store',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(colorScheme: ColorSchemes.darkNeutral(), radius: 1),
-          home: BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              if (state is Authenticated) {
-                return LayoutPage();
-              }
-              if (state is Unauthenticated) {
-                return AuthPage();
-              } else {
-                return const Scaffold(
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
-            },
-          ),
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return ShadcnApp(
+              title: 'Alpha Store',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(colorScheme: state.colorScheme, radius: 1),
+              home: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  if (state is Authenticated) {
+                    return LayoutPage();
+                  }
+                  if (state is Unauthenticated) {
+                    return AuthPage();
+                  } else {
+                    return const Scaffold(
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
+                },
+              ),
+            );
+          },
         ),
       ),
     );
