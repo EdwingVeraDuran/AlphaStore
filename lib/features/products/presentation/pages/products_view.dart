@@ -1,7 +1,7 @@
 import 'package:alpha_store/core/layout/widgets/hidden_scroll.dart';
-import 'package:alpha_store/features/products/presentation/widgets/categories_section.dart';
-import 'package:alpha_store/features/products/presentation/widgets/orders_section.dart';
-import 'package:alpha_store/features/products/presentation/widgets/products_section.dart';
+import 'package:alpha_store/features/products/presentation/widgets/categories/categories_section.dart';
+import 'package:alpha_store/features/products/presentation/widgets/orders/orders_section.dart';
+import 'package:alpha_store/features/products/presentation/widgets/products/products_section.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ProductsView extends StatefulWidget {

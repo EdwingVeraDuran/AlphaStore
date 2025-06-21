@@ -1,5 +1,5 @@
 import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/categories/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {

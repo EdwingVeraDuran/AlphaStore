@@ -1,6 +1,6 @@
 import 'package:alpha_store/features/products/domain/entities/product.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products/products_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {

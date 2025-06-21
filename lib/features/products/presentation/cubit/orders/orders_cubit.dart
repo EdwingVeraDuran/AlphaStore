@@ -1,7 +1,7 @@
 import 'package:alpha_store/features/products/domain/entities/order.dart';
 import 'package:alpha_store/features/products/domain/entities/order_item.dart';
 import 'package:alpha_store/features/products/domain/repos/orders_repo.dart';
-import 'package:alpha_store/features/products/presentation/cubit/orders_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/orders/orders_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrdersCubit extends Cubit<OrdersState> {

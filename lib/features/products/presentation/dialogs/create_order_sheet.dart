@@ -2,9 +2,9 @@ import 'package:alpha_store/core/util/format_util.dart';
 import 'package:alpha_store/features/products/domain/entities/order.dart';
 import 'package:alpha_store/features/products/domain/entities/order_item.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
-import 'package:alpha_store/features/products/presentation/cubit/orders_cubit.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
-import 'package:alpha_store/features/products/presentation/widgets/order_item_list.dart';
+import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
+import 'package:alpha_store/features/products/presentation/widgets/orders/order_item_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 

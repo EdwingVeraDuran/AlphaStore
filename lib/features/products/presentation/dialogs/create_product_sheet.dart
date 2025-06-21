@@ -1,8 +1,8 @@
 import 'package:alpha_store/features/products/domain/entities/category.dart';
 import 'package:alpha_store/features/products/domain/entities/product.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories_cubit.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories_state.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
+import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
+import 'package:alpha_store/features/products/presentation/cubit/categories/categories_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 

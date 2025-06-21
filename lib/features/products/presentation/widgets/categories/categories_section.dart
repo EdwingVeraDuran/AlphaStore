@@ -1,8 +1,8 @@
 import 'package:alpha_store/core/layout/widgets/section_title.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories_cubit.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
+import 'package:alpha_store/features/products/presentation/cubit/categories/categories_state.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/create_category_popover.dart';
-import 'package:alpha_store/features/products/presentation/widgets/categories_table.dart';
+import 'package:alpha_store/features/products/presentation/widgets/categories/categories_table.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 

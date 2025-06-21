@@ -1,9 +1,9 @@
 import 'package:alpha_store/core/shared/widgets/action_button.dart';
 import 'package:alpha_store/core/shared/widgets/search_field.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products/products_state.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/create_product_sheet.dart';
-import 'package:alpha_store/features/products/presentation/widgets/products_table.dart';
+import 'package:alpha_store/features/products/presentation/widgets/products/products_table.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
