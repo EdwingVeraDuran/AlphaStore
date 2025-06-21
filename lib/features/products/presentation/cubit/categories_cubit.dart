@@ -3,14 +3,14 @@ import 'package:alpha_store/features/products/presentation/cubit/categories_stat
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
-  final CategoriesRepo productsRepo;
+  final CategoriesRepo categoriesRepo;
 
-  CategoriesCubit({required this.productsRepo}) : super(CategoriesInitial());
+  CategoriesCubit({required this.categoriesRepo}) : super(CategoriesInitial());
 
   Future<void> addCategory(String category) async {
     emit(CategoriesLoading());
     try {
-      await productsRepo.addCategory(category);
+      await categoriesRepo.addCategory(category);
       emit(CategoryCreated());
     } catch (e) {
       emit(CategoriesError(e.toString()));
@@ -20,7 +20,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Future<void> readCategories() async {
     emit(CategoriesLoading());
     try {
-      final categories = await productsRepo.readCategories();
+      final categories = await categoriesRepo.readCategories();
       emit(CategoriesList(categories));
     } catch (e) {
       emit(CategoriesError(e.toString()));
@@ -30,7 +30,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Future<void> deleteCategory(int id) async {
     emit(CategoriesLoading());
     try {
-      await productsRepo.removeCategory(id);
+      await categoriesRepo.removeCategory(id);
       emit(CategoryDeleted());
     } catch (e) {
       emit(CategoriesError(e.toString()));
