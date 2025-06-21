@@ -9,10 +9,18 @@ class SupabaseAuthRepo implements AuthRepo {
   Future<AppUser?> getCurrentUser() async {
     try {
       final supabaseUser = supabaseAuth.currentUser;
+      final supabaseSession = supabaseAuth.currentSession;
 
       if (supabaseUser == null) return null;
 
-      return AppUser(uid: supabaseUser.id, email: supabaseUser.email!);
+      return AppUser(
+        uid: supabaseUser.id,
+        email: supabaseUser.email!,
+        sessionExpiration:
+            DateTime.fromMillisecondsSinceEpoch(
+              supabaseSession!.expiresAt! * 1000,
+            ).toLocal(),
+      );
     } catch (e) {
       throw Exception('Error al obtener el usuario: $e');
     }
@@ -29,6 +37,10 @@ class SupabaseAuthRepo implements AuthRepo {
       return AppUser(
         uid: authResponse.user!.id,
         email: authResponse.user!.email!,
+        sessionExpiration:
+            DateTime.fromMillisecondsSinceEpoch(
+              authResponse.session!.expiresAt! * 1000,
+            ).toLocal(),
       );
     } catch (e) {
       throw Exception('Error al iniciar sesión: $e');

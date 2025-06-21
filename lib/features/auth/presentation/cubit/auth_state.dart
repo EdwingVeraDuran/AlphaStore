@@ -6,10 +6,10 @@ class AuthInitial extends AuthState {}
 
 class AuthLoading extends AuthState {}
 
-class AuthSuccess extends AuthState {
-  final AppUser message;
+class Authenticated extends AuthState {
+  final AppUser user;
 
-  AuthSuccess(this.message);
+  Authenticated(this.user);
 }
 
 class Unauthenticated extends AuthState {}

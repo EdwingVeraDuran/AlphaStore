@@ -14,11 +14,10 @@ class AuthCubit extends Cubit<AuthState> {
   void checkAuth() async {
     final AppUser? user = await authRepo.getCurrentUser();
 
-    if (user != null) {
-      _currentUser = user;
-      emit(AuthSuccess(user));
-    } else {
+    if (user!.isExpired) {
       emit(Unauthenticated());
+    } else {
+      emit(Authenticated(user));
     }
   }
 
@@ -30,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (user != null) {
         _currentUser = user;
-        emit(AuthSuccess(user));
+        emit(Authenticated(user));
       } else {
         emit(AuthError('Error en el inicio de sesión'));
       }

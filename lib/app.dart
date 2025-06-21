@@ -24,7 +24,9 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => AuthCubit(authRepo: getIt<AuthRepo>()),
+            create:
+                (context) =>
+                    AuthCubit(authRepo: getIt<AuthRepo>())..checkAuth(),
           ),
           BlocProvider(
             create:
@@ -42,7 +44,7 @@ class App extends StatelessWidget {
           theme: ThemeData(colorScheme: ColorSchemes.darkNeutral(), radius: 1),
           home: BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
-              if (state is AuthSuccess) {
+              if (state is Authenticated) {
                 return LayoutPage();
               }
               if (state is Unauthenticated) {
