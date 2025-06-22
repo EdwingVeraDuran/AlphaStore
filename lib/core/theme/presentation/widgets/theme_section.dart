@@ -1,6 +1,6 @@
-import 'package:alpha_store/core/theme/data/app_colors.dart';
-import 'package:alpha_store/core/theme/data/app_mode.dart';
-import 'package:alpha_store/core/theme/data/theme_color.dart';
+import 'package:alpha_store/core/theme/domain/entities/app_colors.dart';
+import 'package:alpha_store/core/theme/domain/entities/app_mode.dart';
+import 'package:alpha_store/core/theme/domain/entities/theme_color.dart';
 import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
 import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
 import 'package:alpha_store/core/theme/presentation/widgets/color_card.dart';

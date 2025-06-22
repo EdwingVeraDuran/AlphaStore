@@ -1,5 +1,5 @@
-import 'package:alpha_store/core/theme/data/app_colors.dart';
-import 'package:alpha_store/core/theme/data/app_mode.dart';
+import 'package:alpha_store/core/theme/domain/entities/app_colors.dart';
+import 'package:alpha_store/core/theme/domain/entities/app_mode.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ThemeState {
