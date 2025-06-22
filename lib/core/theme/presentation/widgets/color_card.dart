@@ -11,8 +11,8 @@ class ColorCard extends StatelessWidget {
     return RadioCard(
       value: appColor,
       child: Container(
-        width: 30,
-        height: 30,
+        width: 30 * Theme.of(context).scaling,
+        height: 30 * Theme.of(context).scaling,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(8),

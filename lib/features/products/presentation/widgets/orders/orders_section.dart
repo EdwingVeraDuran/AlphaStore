@@ -1,4 +1,5 @@
 import 'package:alpha_store/core/layout/widgets/section_title.dart';
+import 'package:alpha_store/core/shared/widgets/action_button.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_state.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/create_order_sheet.dart';
@@ -28,16 +29,15 @@ class _OrdersSectionState extends State<OrdersSection> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SectionTitle(label: 'Pedidos', icon: LucideIcons.truck),
-
-            OutlineButton(
-              trailing: Icon(LucideIcons.circlePlus),
+            ActionButton(
+              icon: LucideIcons.circlePlus,
+              label: 'Crear pedido',
               onPressed:
                   () => openSheet(
                     context: context,
                     builder: (context) => CreateOrderSheet(),
                     position: OverlayPosition.right,
                   ),
-              child: Text('Crear pedido'),
             ),
           ],
         ),

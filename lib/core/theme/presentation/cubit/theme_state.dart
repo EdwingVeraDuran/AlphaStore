@@ -5,13 +5,23 @@ import 'package:shadcn_flutter/shadcn_flutter.dart';
 class ThemeState {
   final AppMode mode;
   final AppColor appColor;
+  final SliderValue appScale;
 
-  ThemeState({required this.mode, required this.appColor});
+  ThemeState({
+    required this.mode,
+    required this.appColor,
+    required this.appScale,
+  });
 
-  ThemeState copyWith({AppMode? mode, AppColor? appColor}) {
+  ThemeState copyWith({
+    AppMode? mode,
+    AppColor? appColor,
+    SliderValue? appScale,
+  }) {
     return ThemeState(
       mode: mode ?? this.mode,
       appColor: appColor ?? this.appColor,
+      appScale: appScale ?? this.appScale,
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:alpha_store/core/layout/widgets/section_title.dart';
+import 'package:alpha_store/core/shared/widgets/action_button.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories/categories_state.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/create_category_popover.dart';
@@ -28,9 +29,9 @@ class _CategoriesSectionState extends State<CategoriesSection> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SectionTitle(label: 'Categorías', icon: LucideIcons.tag),
-            OutlineButton(
-              trailing: Icon(LucideIcons.circlePlus),
-              child: Text('Crear categoría'),
+            ActionButton(
+              icon: LucideIcons.circlePlus,
+              label: 'Crear categoría',
               onPressed:
                   () => showPopover(
                     context: context,

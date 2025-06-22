@@ -19,7 +19,6 @@ class _LayoutPageState extends State<LayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryForeground,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(

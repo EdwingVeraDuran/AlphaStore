@@ -38,7 +38,11 @@ class App extends StatelessWidget {
             return ShadcnApp(
               title: 'Alpha Store',
               debugShowCheckedModeBanner: false,
-              theme: ThemeData(colorScheme: state.colorScheme, radius: 1),
+              theme: ThemeData(
+                colorScheme: state.colorScheme,
+                radius: 1,
+                scaling: state.appScale.value,
+              ),
               home: BlocBuilder<AuthCubit, AuthState>(
                 builder: (context, state) {
                   if (state is Authenticated) {

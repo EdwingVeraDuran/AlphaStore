@@ -14,8 +14,8 @@
 - [ ] Create dashboard feature
 
 ## 🎨 UI/UX Enhancements
-- [ ] Enhance and polish UI widgets for better user experience
-- [ ] Implement customizable theme system
+- [X] Enhance and polish UI widgets for better user experience
+- [X] Implement customizable theme system
   - Dark/Light mode toggle
   - Color palette selection
   - Visual accessibility options

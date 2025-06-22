@@ -30,11 +30,29 @@ class ThemeSection extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            Switch(
-              leading: Icon(LucideIcons.sun),
-              trailing: Icon(LucideIcons.moon),
-              value: state.mode == AppMode.dark,
-              onChanged: (value) => context.read<ThemeCubit>().toggleAppMode(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 250,
+                  child: Slider(
+                    value: SliderValue.single(state.appScale.value),
+                    min: 0.5,
+                    max: 1.5,
+                    divisions: 10,
+                    onChanged:
+                        (value) =>
+                            context.read<ThemeCubit>().setScale(value.value),
+                  ),
+                ),
+                Switch(
+                  leading: Icon(LucideIcons.sun),
+                  trailing: Icon(LucideIcons.moon),
+                  value: state.mode == AppMode.dark,
+                  onChanged:
+                      (value) => context.read<ThemeCubit>().toggleAppMode(),
+                ),
+              ],
             ),
             Gap(16),
             RadioGroup(

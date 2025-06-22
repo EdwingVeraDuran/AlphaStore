@@ -3,12 +3,19 @@ import 'package:alpha_store/core/theme/domain/entities/app_mode.dart';
 import 'package:alpha_store/core/theme/domain/repos/theme_repo.dart';
 import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
   final ThemeRepo themeRepo;
 
   ThemeCubit({required this.themeRepo})
-    : super(ThemeState(mode: AppMode.light, appColor: AppColor.blue));
+    : super(
+        ThemeState(
+          mode: AppMode.light,
+          appColor: AppColor.blue,
+          appScale: SliderValue.single(1),
+        ),
+      );
 
   Future<void> loadTheme() async {
     try {
@@ -38,6 +45,15 @@ class ThemeCubit extends Cubit<ThemeState> {
       await themeRepo.saveTheme(state);
     } catch (e) {
       throw Exception('Error setting app color: $e');
+    }
+  }
+
+  void setScale(double scaleFactor) async {
+    try {
+      emit(state.copyWith(appScale: SliderValue.single(scaleFactor)));
+      await themeRepo.saveTheme(state);
+    } catch (e) {
+      throw Exception('Error setting app scale: $e');
     }
   }
 }

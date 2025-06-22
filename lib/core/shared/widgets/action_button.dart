@@ -13,7 +13,7 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlineButton(
+    return PrimaryButton(
       trailing: Icon(icon),
       onPressed: onPressed,
       child: Text(label),
