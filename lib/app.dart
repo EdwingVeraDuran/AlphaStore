@@ -1,16 +1,15 @@
 import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
 import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
 import 'package:alpha_store/core/util/injection_container.dart';
-import 'package:alpha_store/core/layout/pages/layout_page.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:alpha_store/features/auth/presentation/cubit/auth_state.dart';
-import 'package:alpha_store/features/auth/presentation/pages/auth_page.dart';
 import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/orders_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
+import 'package:alpha_store/home_page.dart';
+import 'package:alpha_store/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
@@ -43,20 +42,8 @@ class App extends StatelessWidget {
                 radius: 1,
                 scaling: state.appScale.value,
               ),
-              home: BlocBuilder<AuthCubit, AuthState>(
-                builder: (context, state) {
-                  if (state is Authenticated) {
-                    return LayoutPage();
-                  }
-                  if (state is Unauthenticated) {
-                    return AuthPage();
-                  } else {
-                    return const Scaffold(
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }
-                },
-              ),
+              initialRoute: '/',
+              routes: {'/': (_) => SplashScreen(), '/home': (_) => HomePage()},
             );
           },
         ),
