@@ -14,6 +14,7 @@ class OrdersCubit extends Cubit<OrdersState> {
       final clientResponse = await ordersRepo.createOrder(order, items);
       if (clientResponse != null) {
         emit(OrderCreated(clientResponse));
+        await readOrders();
       }
     } catch (e) {
       emit(OrdersError(e.toString()));
@@ -24,6 +25,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     try {
       await ordersRepo.deleteOrder(order);
       emit(OrderDeleted(order));
+      await readOrders();
     } catch (e) {
       emit(OrdersError(e.toString()));
     }

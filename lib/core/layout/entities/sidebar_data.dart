@@ -1,4 +1,5 @@
 import 'package:alpha_store/core/layout/entities/sidebar_item.dart';
+import 'package:alpha_store/features/clients/presentation/pages/clients_view.dart';
 import 'package:alpha_store/features/products/presentation/pages/products_view.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
@@ -13,6 +14,11 @@ class SidebarData {
       label: 'Productos',
       icon: LucideIcons.shoppingCart,
       view: ProductsView(),
+    ),
+    SidebarItem(
+      label: 'Clientes',
+      icon: LucideIcons.contactRound,
+      view: ClientsView(),
     ),
   ];
 }

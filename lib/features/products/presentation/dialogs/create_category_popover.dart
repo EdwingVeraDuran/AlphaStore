@@ -17,7 +17,6 @@ class _CreateCategoryPopoverState extends State<CreateCategoryPopover> {
     _categoryController.clear();
 
     context.read<CategoriesCubit>().addCategory(category);
-    context.read<CategoriesCubit>().readCategories();
     closeOverlay(context);
   }
 

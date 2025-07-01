@@ -1,3 +1,4 @@
+import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
 import 'package:alpha_store/features/products/domain/entities/category.dart';
 import 'package:alpha_store/features/products/domain/entities/product.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
@@ -82,21 +83,14 @@ class _CreateProductSheetState extends State<CreateProductSheet> {
     createProduct(product);
   }
 
-  void createProduct(Product product) async {
+  void createProduct(Product product) {
     closeSheet(context);
-    await context.read<ProductsCubit>().createProduct(product);
-    getProducts();
-  }
-
-  void getProducts() {
-    context.read<ProductsCubit>().readProducts();
+    context.read<ProductsCubit>().createProduct(product);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      constraints: const BoxConstraints(maxWidth: 400),
+    return SheetLayout(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

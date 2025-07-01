@@ -2,6 +2,7 @@ import 'package:alpha_store/core/layout/widgets/section_title.dart';
 import 'package:alpha_store/core/shared/widgets/action_button.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
 import 'package:alpha_store/features/products/presentation/dialogs/create_order_sheet.dart';
 import 'package:alpha_store/features/products/presentation/widgets/orders/orders_table.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,12 @@ class _OrdersSectionState extends State<OrdersSection> {
           ],
         ),
         Gap(24),
-        BlocBuilder<OrdersCubit, OrdersState>(
+        BlocConsumer<OrdersCubit, OrdersState>(
+          listener: (context, state) {
+            if (state is OrderCreated) {
+              context.read<ProductsCubit>().readProducts();
+            }
+          },
           builder: (context, state) {
             if (state is OrdersLoading) {
               return Center(child: CircularProgressIndicator());

@@ -14,6 +14,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
       if (clientResponse != null) {
         emit(ProductCreated(clientResponse));
+        await readProducts();
       }
     } catch (e) {
       throw Exception('Error creating product: $e');
@@ -26,6 +27,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
       if (clientResponse != null) {
         emit(ProductDeleted(clientResponse));
+        await readProducts();
       }
     } catch (e) {
       throw Exception('Error deleting product: $e');
@@ -38,6 +40,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
       if (clientResponse != null) {
         emit(ProductUpdated(clientResponse));
+        await readProducts();
       }
     } catch (e) {
       throw Exception('Error updating product: $e');

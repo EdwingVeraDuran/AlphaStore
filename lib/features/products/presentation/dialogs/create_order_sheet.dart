@@ -1,9 +1,9 @@
+import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
 import 'package:alpha_store/core/util/format_util.dart';
 import 'package:alpha_store/features/products/domain/entities/order.dart';
 import 'package:alpha_store/features/products/domain/entities/order_item.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
 import 'package:alpha_store/features/products/presentation/widgets/orders/order_item_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
@@ -53,26 +53,19 @@ class _CreateOrderSheetState extends State<CreateOrderSheet> {
     });
   }
 
-  void createOrder() async {
+  void createOrder() {
     if (products.isEmpty) return;
 
     final order = Order(id: null, createdAt: DateTime.now(), total: total);
 
     closeSheet(context);
 
-    await context.read<OrdersCubit>().createOrder(order, products);
-    readProducts();
+    context.read<OrdersCubit>().createOrder(order, products);
   }
-
-  void readProducts() => context.read<ProductsCubit>().readProducts();
-
-  void readOrders() => context.read<OrdersCubit>().readOrders();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(24),
-      constraints: BoxConstraints(maxWidth: 400),
+    return SheetLayout(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

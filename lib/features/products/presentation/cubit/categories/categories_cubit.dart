@@ -12,6 +12,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     try {
       await categoriesRepo.addCategory(category);
       emit(CategoryCreated());
+      await readCategories();
     } catch (e) {
       emit(CategoriesError(e.toString()));
     }
@@ -32,6 +33,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     try {
       await categoriesRepo.removeCategory(id);
       emit(CategoryDeleted());
+      await readCategories();
     } catch (e) {
       emit(CategoriesError(e.toString()));
     }

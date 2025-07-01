@@ -4,6 +4,9 @@ import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
 import 'package:alpha_store/features/auth/data/supabase_auth_repo.dart';
 import 'package:alpha_store/features/auth/domain/repos/auth_repo.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:alpha_store/features/clients/data/supabase_clients_repo.dart';
+import 'package:alpha_store/features/clients/domain/repos/clients_repo.dart';
+import 'package:alpha_store/features/clients/presentation/cubits/clients_cubit.dart';
 import 'package:alpha_store/features/products/data/supabase_categories_repo.dart';
 import 'package:alpha_store/features/products/data/supabase_orders_repo.dart';
 import 'package:alpha_store/features/products/data/supabase_products_repo.dart';
@@ -24,6 +27,7 @@ void setup() {
   getIt.registerLazySingleton<ProductsRepo>(() => SupabaseProductsRepo());
   getIt.registerLazySingleton<CategoriesRepo>(() => SupabaseCategoriesRepo());
   getIt.registerLazySingleton<OrdersRepo>(() => SupabaseOrdersRepo());
+  getIt.registerLazySingleton<ClientsRepo>(() => SupabaseClientsRepo());
 
   // Cubits
   getIt.registerFactory(() => ThemeCubit(themeRepo: getIt<ThemeRepo>()));
@@ -35,4 +39,5 @@ void setup() {
     () => CategoriesCubit(categoriesRepo: getIt<CategoriesRepo>()),
   );
   getIt.registerFactory(() => OrdersCubit(ordersRepo: getIt<OrdersRepo>()));
+  getIt.registerFactory(() => ClientsCubit(clientsRepo: getIt<ClientsRepo>()));
 }
