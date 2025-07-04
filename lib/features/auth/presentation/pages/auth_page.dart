@@ -14,10 +14,6 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   void login() {
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      //TODO: Add toast
-    }
-
     context.read<AuthCubit>().login(
       _emailController.text,
       _passwordController.text,
