@@ -1,7 +1,7 @@
 import 'package:alpha_store/core/theme/domain/entities/app_colors.dart';
 import 'package:alpha_store/core/theme/domain/entities/app_mode.dart';
 import 'package:alpha_store/core/theme/domain/repos/theme_repo.dart';
-import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_state.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

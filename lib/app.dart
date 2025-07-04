@@ -1,5 +1,6 @@
-import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
-import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_bloc.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_event.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_state.dart';
 import 'package:alpha_store/core/util/injection_container.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:alpha_store/features/customers/domain/repos/customer_repo.dart';
@@ -29,14 +30,16 @@ class App extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => getIt<ThemeCubit>()..loadTheme()),
+          BlocProvider(
+            create: (context) => getIt<ThemeBloc>()..add(LoadThemeEvent()),
+          ),
           BlocProvider(create: (context) => getIt<AuthCubit>()..checkAuth()),
           BlocProvider(create: (context) => getIt<ProductsCubit>()),
           BlocProvider(create: (context) => getIt<CategoriesCubit>()),
           BlocProvider(create: (context) => getIt<OrdersCubit>()),
           BlocProvider(create: (context) => getIt<CustomerBloc>()),
         ],
-        child: BlocBuilder<ThemeCubit, ThemeState>(
+        child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
             return ShadcnApp(
               title: 'Alpha Store',

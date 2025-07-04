@@ -1,6 +1,6 @@
 import 'package:alpha_store/core/theme/data/shared_preferences_theme_repo.dart';
 import 'package:alpha_store/core/theme/domain/repos/theme_repo.dart';
-import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_bloc.dart';
 import 'package:alpha_store/features/auth/data/supabase_auth_repo.dart';
 import 'package:alpha_store/features/auth/domain/repos/auth_repo.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
@@ -30,7 +30,7 @@ void setup() {
   getIt.registerLazySingleton<CustomerRepo>(() => SupabaseCustomerRepo());
 
   // Cubits
-  getIt.registerFactory(() => ThemeCubit(themeRepo: getIt<ThemeRepo>()));
+  getIt.registerFactory(() => ThemeBloc(getIt<ThemeRepo>()));
   getIt.registerFactory(() => AuthCubit(authRepo: getIt<AuthRepo>()));
   getIt.registerFactory(
     () => ProductsCubit(productsRepo: getIt<ProductsRepo>()),

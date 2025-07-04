@@ -1,8 +1,9 @@
 import 'package:alpha_store/core/theme/domain/entities/app_colors.dart';
 import 'package:alpha_store/core/theme/domain/entities/app_mode.dart';
 import 'package:alpha_store/core/theme/domain/entities/theme_color.dart';
-import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
-import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_bloc.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_event.dart';
+import 'package:alpha_store/core/theme/presentation/bloc/theme_state.dart';
 import 'package:alpha_store/core/theme/presentation/widgets/color_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
@@ -26,7 +27,7 @@ class ThemeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeState>(
+    return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return Column(
           children: [
@@ -41,8 +42,9 @@ class ThemeSection extends StatelessWidget {
                     max: 1.5,
                     divisions: 10,
                     onChanged:
-                        (value) =>
-                            context.read<ThemeCubit>().setScale(value.value),
+                        (value) => context.read<ThemeBloc>().add(
+                          SetAppScaleEvent(value.value),
+                        ),
                   ),
                 ),
                 Switch(
@@ -50,14 +52,17 @@ class ThemeSection extends StatelessWidget {
                   trailing: Icon(LucideIcons.moon),
                   value: state.mode == AppMode.dark,
                   onChanged:
-                      (value) => context.read<ThemeCubit>().toggleAppMode(),
+                      (value) =>
+                          context.read<ThemeBloc>().add(ToggleAppModeEvent()),
                 ),
               ],
             ),
             Gap(16),
             RadioGroup(
               value: state.appColor,
-              onChanged: (value) => context.read<ThemeCubit>().setColor(value),
+              onChanged:
+                  (value) =>
+                      context.read<ThemeBloc>().add(SetAppColorEvent(value)),
               child: Wrap(
                 spacing: 16,
                 runSpacing: 16,
