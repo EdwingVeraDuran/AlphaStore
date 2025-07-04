@@ -18,6 +18,7 @@ class SearchField extends StatefulWidget {
 }
 
 class _SearchFieldState extends State<SearchField> {
+  final _controller = TextEditingController();
   Timer? _debounce;
 
   void _onSearchChanged(String query) {
@@ -39,9 +40,19 @@ class _SearchFieldState extends State<SearchField> {
       width: 350,
       child: TextField(
         placeholder: Text(widget.placeholder),
+        controller: _controller,
         features: [
           InputFeature.leading(Icon(LucideIcons.search)),
-          InputFeature.clear(),
+          InputFeature.trailing(
+            IconButton.text(
+              icon: Icon(LucideIcons.x),
+              size: ButtonSize.small,
+              onPressed: () {
+                _controller.clear();
+                _onSearchChanged(_controller.text);
+              },
+            ),
+          ),
         ],
         onChanged: _onSearchChanged,
       ),
