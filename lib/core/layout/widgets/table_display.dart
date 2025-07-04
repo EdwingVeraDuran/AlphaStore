@@ -1,3 +1,4 @@
+import 'package:alpha_store/core/layout/widgets/hidden_scroll.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class TableDisplay extends StatefulWidget {
@@ -28,7 +29,7 @@ class _TableDisplayState extends State<TableDisplay> {
         Gap(24),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [rowsNumber(), Gap(32), pagination()],
+          children: [rowsNumber(), pagination()],
         ),
       ],
     );
