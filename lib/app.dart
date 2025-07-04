@@ -2,8 +2,8 @@ import 'package:alpha_store/core/theme/presentation/cubit/theme_cubit.dart';
 import 'package:alpha_store/core/theme/presentation/cubit/theme_state.dart';
 import 'package:alpha_store/core/util/injection_container.dart';
 import 'package:alpha_store/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:alpha_store/features/clients/domain/repos/clients_repo.dart';
-import 'package:alpha_store/features/clients/presentation/cubits/clients_cubit.dart';
+import 'package:alpha_store/features/customers/domain/repos/customer_repo.dart';
+import 'package:alpha_store/features/customers/presentation/bloc/customer_bloc.dart';
 import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/orders_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
@@ -25,7 +25,7 @@ class App extends StatelessWidget {
         RepositoryProvider(create: (context) => getIt<ProductsRepo>()),
         RepositoryProvider(create: (context) => getIt<CategoriesRepo>()),
         RepositoryProvider(create: (context) => getIt<OrdersRepo>()),
-        RepositoryProvider(create: (context) => getIt<ClientsRepo>()),
+        RepositoryProvider(create: (context) => getIt<CustomerRepo>()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -34,7 +34,7 @@ class App extends StatelessWidget {
           BlocProvider(create: (context) => getIt<ProductsCubit>()),
           BlocProvider(create: (context) => getIt<CategoriesCubit>()),
           BlocProvider(create: (context) => getIt<OrdersCubit>()),
-          BlocProvider(create: (context) => getIt<ClientsCubit>()),
+          BlocProvider(create: (context) => getIt<CustomerBloc>()),
         ],
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {

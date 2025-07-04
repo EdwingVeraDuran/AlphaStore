@@ -1,69 +1,69 @@
-import 'package:alpha_store/features/clients/domain/entities/client.dart';
-import 'package:alpha_store/features/clients/domain/repos/clients_repo.dart';
+import 'package:alpha_store/features/customers/domain/entities/customer.dart';
+import 'package:alpha_store/features/customers/domain/repos/customer_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SupabaseClientsRepo implements ClientsRepo {
+class SupabaseCustomerRepo implements CustomerRepo {
   final clientsTable = Supabase.instance.client.from('clients');
 
   @override
-  Future<Client?> createClient(Client client) async {
+  Future<Customer?> addCustomer(Customer client) async {
     try {
       final clientResponse = await clientsTable.insert(client.toMap()).select();
-      return Client.fromMap(clientResponse.first);
+      return Customer.fromMap(clientResponse.first);
     } catch (e) {
       throw Exception('Error creating client: $e');
     }
   }
 
   @override
-  Future<Client?> deleteClient(Client client) async {
+  Future<Customer?> deleteCustomer(Customer client) async {
     try {
       final clientResponse =
           await clientsTable.delete().eq('id', client.id!).select();
-      return Client.fromMap(clientResponse.first);
+      return Customer.fromMap(clientResponse.first);
     } catch (e) {
       throw Exception('Error deleting client: $e');
     }
   }
 
   @override
-  Future<List<Client>> getClients() async {
+  Future<List<Customer>> getCustomers() async {
     try {
       final clientResponse = await clientsTable.select();
-      return clientResponse.map((e) => Client.fromMap(e)).toList();
+      return clientResponse.map((e) => Customer.fromMap(e)).toList();
     } catch (e) {
       throw Exception('Error getting clients: $e');
     }
   }
 
   @override
-  Future<List<Client>> searchClients(String query) async {
+  Future<List<Customer>> searchCustomers(String query) async {
     try {
       final clientResponse = await clientsTable.select().or(
         'name.ilike.%$query%,phone.ilike.%$query%',
       );
-      return clientResponse.map((e) => Client.fromMap(e)).toList();
+      return clientResponse.map((e) => Customer.fromMap(e)).toList();
     } catch (e) {
       throw Exception('Error searching clients: $e');
     }
   }
 
   @override
-  Future<Client?> updateClient(Client client) async {
+  Future<Customer?> updateCustomer(Customer client) async {
     try {
       final clientResponse =
           await clientsTable
               .update(client.toMap())
               .eq('id', client.id!)
               .select();
-      return Client.fromMap(clientResponse.first);
+      return Customer.fromMap(clientResponse.first);
     } catch (e) {
       throw Exception('Error updating client: $e');
     }
   }
 
   @override
-  Future<bool> clientPhoneExists(String phone) async {
+  Future<bool> customerPhoneExists(String phone) async {
     try {
       final clientResponse = await clientsTable.select().eq('phone', phone);
       return clientResponse.isNotEmpty;

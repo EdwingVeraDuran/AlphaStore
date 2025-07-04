@@ -1,11 +1,11 @@
 import 'package:alpha_store/core/layout/widgets/table_display.dart';
 import 'package:alpha_store/core/shared/widgets/table_widgets.dart';
-import 'package:alpha_store/features/clients/domain/entities/client.dart';
+import 'package:alpha_store/features/customers/domain/entities/customer.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class ClientsTable extends StatelessWidget {
-  final List<Client> data;
-  ClientsTable(this.data, {super.key});
+class CustomerTable extends StatelessWidget {
+  final List<Customer> data;
+  CustomerTable(this.data, {super.key});
 
   final _tableHeader = TableHeader(
     cells: [

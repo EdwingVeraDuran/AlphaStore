@@ -1,36 +1,41 @@
 import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
-import 'package:alpha_store/features/clients/domain/entities/client.dart';
-import 'package:alpha_store/features/clients/presentation/cubits/clients_cubit.dart';
+import 'package:alpha_store/features/customers/domain/entities/customer.dart';
+import 'package:alpha_store/features/customers/presentation/bloc/customer_bloc.dart';
+import 'package:alpha_store/features/customers/presentation/bloc/customer_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class CreateClientSheet extends StatefulWidget {
-  const CreateClientSheet({super.key});
+class CreateCustomerSheet extends StatefulWidget {
+  const CreateCustomerSheet({super.key});
 
   @override
-  State<CreateClientSheet> createState() => _CreateClientSheetState();
+  State<CreateCustomerSheet> createState() => _CreateCustomerSheetState();
 }
 
-class _CreateClientSheetState extends State<CreateClientSheet> {
+class _CreateCustomerSheetState extends State<CreateCustomerSheet> {
   final _nameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
   final _hoodController = TextEditingController();
 
-  void createClient() async {
-    final client = Client(
+  void createCustomer() async {
+    //TODO: Add validation
+
+    final customer = Customer(
       name: _nameController.text,
       phone: _phoneController.text,
       address: _addressController.text,
       hood: _hoodController.text,
     );
-    final response = await context.read<ClientsCubit>().createClient(client);
+    context.read<CustomerBloc>().add(AddCustomer(customer));
+    closeSheet(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return SheetLayout(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Crear cliente').large().medium(),
           Gap(16),
@@ -56,7 +61,7 @@ class _CreateClientSheetState extends State<CreateClientSheet> {
                 child: Text('Cancelar'),
               ),
               Gap(16),
-              PrimaryButton(onPressed: createClient, child: Text('Crear')),
+              PrimaryButton(onPressed: createCustomer, child: Text('Crear')),
             ],
           ),
         ],
