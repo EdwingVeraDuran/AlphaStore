@@ -1,5 +1,7 @@
 import 'package:alpha_store/core/layout/widgets/section_title.dart';
-import 'package:alpha_store/features/categories/presentation/bloc/categories_cubit.dart';
+import 'package:alpha_store/core/shared/widgets/operation_toast.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_bloc.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_event.dart';
 import 'package:alpha_store/features/categories/presentation/bloc/categories_state.dart';
 import 'package:alpha_store/features/categories/presentation/widgets/categories_table.dart';
 import 'package:alpha_store/features/categories/presentation/widgets/category_popover.dart';
@@ -17,7 +19,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
   @override
   void initState() {
     super.initState();
-    context.read<CategoriesCubit>().readCategories();
+    context.read<CategoriesBloc>().add(LoadCategories());
   }
 
   @override
@@ -32,25 +34,40 @@ class _CategoriesSectionState extends State<CategoriesSection> {
           ],
         ),
         Gap(24),
-        BlocBuilder<CategoriesCubit, CategoriesState>(
+        BlocConsumer<CategoriesBloc, CategoryState>(
           builder: (context, state) {
-            if (state is CategoriesLoading) {
+            if (state is CategoryLoading) {
               return Center(child: CircularProgressIndicator());
             }
-
-            if (state is CategoriesError) {
+            if (state is CategoryError) {
               return Center(child: Text(state.message));
             }
 
-            if (state is CategoriesEmpty) {
+            if (state is CategoryEmpty) {
               return Center(child: Text('No hay categorías'));
             }
 
-            if (state is CategoriesList) {
+            if (state is CategoryLoaded) {
               return CategoriesTable(state.categories);
             }
 
-            return Container();
+            return Center(
+              child: IconButton.outline(
+                icon: Icon(LucideIcons.refreshCcw),
+                onPressed:
+                    () => context.read<CategoriesBloc>().add(LoadCategories()),
+              ),
+            );
+          },
+          listener: (context, state) {
+            if (state is CategoryFeedbackState) {
+              showToast(
+                context: context,
+                builder:
+                    (context, overlay) =>
+                        OperationToast(overlay: overlay, status: state.status),
+              );
+            }
           },
         ),
       ],

@@ -13,7 +13,7 @@ import 'package:alpha_store/features/products/data/supabase_products_repo.dart';
 import 'package:alpha_store/features/categories/domain/repos/categories_repo.dart';
 import 'package:alpha_store/features/stock_entry/domain/repos/orders_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
-import 'package:alpha_store/features/categories/presentation/bloc/categories_cubit.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_bloc.dart';
 import 'package:alpha_store/features/stock_entry/presentation/bloc/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -35,9 +35,7 @@ void setup() {
   getIt.registerFactory(
     () => ProductsCubit(productsRepo: getIt<ProductsRepo>()),
   );
-  getIt.registerFactory(
-    () => CategoriesCubit(categoriesRepo: getIt<CategoriesRepo>()),
-  );
+  getIt.registerFactory(() => CategoriesBloc(getIt<CategoriesRepo>()));
   getIt.registerFactory(() => OrdersCubit(ordersRepo: getIt<OrdersRepo>()));
   getIt.registerFactory(() => CustomerBloc(getIt<CustomerRepo>()));
 }

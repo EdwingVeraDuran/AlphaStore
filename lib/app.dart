@@ -8,7 +8,7 @@ import 'package:alpha_store/features/customers/presentation/bloc/customer_bloc.d
 import 'package:alpha_store/features/categories/domain/repos/categories_repo.dart';
 import 'package:alpha_store/features/stock_entry/domain/repos/orders_repo.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
-import 'package:alpha_store/features/categories/presentation/bloc/categories_cubit.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_bloc.dart';
 import 'package:alpha_store/features/stock_entry/presentation/bloc/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
 import 'package:alpha_store/home_page.dart';
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
           ),
           BlocProvider(create: (context) => getIt<AuthCubit>()..checkAuth()),
           BlocProvider(create: (context) => getIt<ProductsCubit>()),
-          BlocProvider(create: (context) => getIt<CategoriesCubit>()),
+          BlocProvider(create: (context) => getIt<CategoriesBloc>()),
           BlocProvider(create: (context) => getIt<OrdersCubit>()),
           BlocProvider(create: (context) => getIt<CustomerBloc>()),
         ],

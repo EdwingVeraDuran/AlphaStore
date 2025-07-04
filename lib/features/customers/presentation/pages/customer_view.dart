@@ -68,7 +68,11 @@ class _CustomerViewState extends State<CustomerView> {
               }
 
               return Center(
-                child: IconButton.outline(icon: Icon(LucideIcons.refreshCcw)),
+                child: IconButton.outline(
+                  icon: Icon(LucideIcons.refreshCcw),
+                  onPressed:
+                      () => context.read<CustomerBloc>().add(LoadCustomers()),
+                ),
               );
             },
             listener: (context, state) {

@@ -52,15 +52,14 @@ class CustomerBloc extends Bloc<CustomerEvent, CustomerState> {
             ),
           ),
         );
+      } else {
+        emit(
+          CustomerFeedbackState(
+            OperationStatus.succesAdd('Se ha creado con exito el cliente.'),
+          ),
+        );
+        add(LoadCustomers());
       }
-
-      emit(
-        CustomerFeedbackState(
-          OperationStatus.succesAdd('Se ha creado con exito el cliente.'),
-        ),
-      );
-
-      add(LoadCustomers());
     } catch (e) {
       addError(CustomerError(e.toString()));
     }
@@ -81,15 +80,16 @@ class CustomerBloc extends Bloc<CustomerEvent, CustomerState> {
             ),
           ),
         );
+      } else {
+        emit(
+          CustomerFeedbackState(
+            OperationStatus.succesAdd(
+              'Se ha actualizado con exito el cliente.',
+            ),
+          ),
+        );
+        add(LoadCustomers());
       }
-
-      emit(
-        CustomerFeedbackState(
-          OperationStatus.succesAdd('Se ha actualizado con exito el cliente.'),
-        ),
-      );
-
-      add(LoadCustomers());
     } catch (e) {
       addError(CustomerError(e.toString()));
     }
@@ -110,15 +110,14 @@ class CustomerBloc extends Bloc<CustomerEvent, CustomerState> {
             ),
           ),
         );
+      } else {
+        emit(
+          CustomerFeedbackState(
+            OperationStatus.succesAdd('Se ha eliminado con exito el cliente.'),
+          ),
+        );
+        add(LoadCustomers());
       }
-
-      emit(
-        CustomerFeedbackState(
-          OperationStatus.succesAdd('Se ha eliminado con exito el cliente.'),
-        ),
-      );
-
-      add(LoadCustomers());
     } catch (e) {
       addError(CustomerError(e.toString()));
     }

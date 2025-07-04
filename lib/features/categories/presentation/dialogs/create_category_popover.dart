@@ -1,4 +1,6 @@
-import 'package:alpha_store/features/categories/presentation/bloc/categories_cubit.dart';
+import 'package:alpha_store/features/categories/domain/entities/category.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_bloc.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
@@ -16,7 +18,7 @@ class _CreateCategoryPopoverState extends State<CreateCategoryPopover> {
     if (category.isEmpty) return;
     _categoryController.clear();
 
-    context.read<CategoriesCubit>().addCategory(category);
+    context.read<CategoriesBloc>().add(AddCategory(Category(name: category)));
     closeOverlay(context);
   }
 

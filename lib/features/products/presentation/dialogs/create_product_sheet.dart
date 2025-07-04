@@ -3,8 +3,9 @@ import 'package:alpha_store/core/shared/entities/form_error.dart';
 import 'package:alpha_store/core/shared/widgets/error_toast.dart';
 import 'package:alpha_store/core/util/toast_utils.dart';
 import 'package:alpha_store/features/categories/domain/entities/category.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_event.dart';
 import 'package:alpha_store/features/products/domain/entities/product.dart';
-import 'package:alpha_store/features/categories/presentation/bloc/categories_cubit.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_bloc.dart';
 import 'package:alpha_store/features/categories/presentation/bloc/categories_state.dart';
 import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class _CreateProductSheetState extends State<CreateProductSheet> {
   @override
   void initState() {
     super.initState();
-    context.read<CategoriesCubit>().readCategories();
+    context.read<CategoriesBloc>().add(LoadCategories());
   }
 
   List<Category> _filteredCategories(String query) {
@@ -134,9 +135,9 @@ class _CreateProductSheetState extends State<CreateProductSheet> {
                 placeholder: Text('Unidades'),
               ),
               Gap(16),
-              BlocBuilder<CategoriesCubit, CategoriesState>(
+              BlocBuilder<CategoriesBloc, CategoryState>(
                 builder: (context, state) {
-                  if (state is CategoriesList) {
+                  if (state is CategoryLoaded) {
                     categories = state.categories;
                   }
 

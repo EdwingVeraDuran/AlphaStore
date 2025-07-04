@@ -1,25 +1,27 @@
+import 'package:alpha_store/core/shared/entities/operation_status.dart';
 import 'package:alpha_store/features/categories/domain/entities/category.dart';
 
-abstract class CategoriesState {}
+sealed class CategoryState {}
 
-class CategoriesInitial extends CategoriesState {}
+class CategoryInitial extends CategoryState {}
 
-class CategoriesLoading extends CategoriesState {}
+class CategoryLoading extends CategoryState {}
 
-class CategoryCreated extends CategoriesState {}
-
-class CategoryDeleted extends CategoriesState {}
-
-class CategoriesList extends CategoriesState {
+class CategoryLoaded extends CategoryState {
   final List<Category> categories;
 
-  CategoriesList(this.categories);
+  CategoryLoaded(this.categories);
 }
 
-class CategoriesEmpty extends CategoriesState {}
+class CategoryEmpty extends CategoryState {}
 
-class CategoriesError extends CategoriesState {
+class CategoryFeedbackState extends CategoryState {
+  final OperationStatus status;
+  CategoryFeedbackState(this.status);
+}
+
+class CategoryError extends CategoryState {
   final String message;
 
-  CategoriesError(this.message);
+  CategoryError(this.message);
 }
