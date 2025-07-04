@@ -1,4 +1,4 @@
-import 'package:alpha_store/features/products/domain/entities/order.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry.dart';
 
 abstract class OrdersState {}
 
@@ -7,19 +7,19 @@ class OrdersInitial extends OrdersState {}
 class OrdersLoading extends OrdersState {}
 
 class OrderCreated extends OrdersState {
-  final Order order;
+  final StockEntry order;
 
   OrderCreated(this.order);
 }
 
 class OrderDeleted extends OrdersState {
-  final Order order;
+  final StockEntry order;
 
   OrderDeleted(this.order);
 }
 
 class OrdersList extends OrdersState {
-  final List<Order> orders;
+  final List<StockEntry> orders;
 
   OrdersList(this.orders);
 }

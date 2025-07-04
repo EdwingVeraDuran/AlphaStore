@@ -1,9 +1,9 @@
 import 'package:alpha_store/core/util/format_util.dart';
-import 'package:alpha_store/features/products/domain/entities/order_item.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class OrderItemList extends StatelessWidget {
-  final OrderItem orderItem;
+  final StockEntryItem orderItem;
   final VoidCallback onDecrement;
   final VoidCallback onIncrement;
   const OrderItemList({

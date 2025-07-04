@@ -1,10 +1,10 @@
 import 'package:alpha_store/features/products/domain/entities/product.dart';
 
-class OrderItem {
+class StockEntryItem {
   final Product product;
   int amount;
 
-  OrderItem({required this.product, required this.amount});
+  StockEntryItem({required this.product, required this.amount});
 
   double get totalPrice => product.buyPrice * amount;
 

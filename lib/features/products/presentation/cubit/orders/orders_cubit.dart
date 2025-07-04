@@ -1,5 +1,5 @@
-import 'package:alpha_store/features/products/domain/entities/order.dart';
-import 'package:alpha_store/features/products/domain/entities/order_item.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
 import 'package:alpha_store/features/products/domain/repos/orders_repo.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +9,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   OrdersCubit({required this.ordersRepo}) : super(OrdersInitial());
 
-  Future<void> createOrder(Order order, List<OrderItem> items) async {
+  Future<void> createOrder(StockEntry order, List<StockEntryItem> items) async {
     try {
       final clientResponse = await ordersRepo.createOrder(order, items);
       if (clientResponse != null) {
@@ -21,7 +21,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
   }
 
-  Future<void> deleteOrder(Order order) async {
+  Future<void> deleteOrder(StockEntry order) async {
     try {
       await ordersRepo.deleteOrder(order);
       emit(OrderDeleted(order));

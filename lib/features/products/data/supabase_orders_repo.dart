@@ -1,6 +1,6 @@
-import 'package:alpha_store/features/products/domain/entities/order.dart';
-import 'package:alpha_store/features/products/domain/entities/order_detail.dart';
-import 'package:alpha_store/features/products/domain/entities/order_item.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry_detail.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
 import 'package:alpha_store/features/products/domain/repos/orders_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -9,51 +9,54 @@ class SupabaseOrdersRepo implements OrdersRepo {
   final orderDetailsTable = Supabase.instance.client.from('order_detail');
 
   @override
-  Future<Order?> createOrder(Order order, List<OrderItem> items) async {
+  Future<StockEntry?> createOrder(
+    StockEntry order,
+    List<StockEntryItem> items,
+  ) async {
     try {
       final orderResponse = await ordersTable.insert(order.toMap()).select();
       final orderId = orderResponse.first['id'];
       final orderDetails =
-          items.map((e) => OrderDetail.fromItem(e, orderId)).toList();
+          items.map((e) => StockEntryDetail.fromItem(e, orderId)).toList();
       await orderDetailsTable.insert(
         orderDetails.map((e) => e.toMap()).toList(),
       );
-      return Order.fromMap(orderResponse.first);
+      return StockEntry.fromMap(orderResponse.first);
     } catch (e) {
       throw Exception('Error creating order: $e');
     }
   }
 
   @override
-  Future<Order?> deleteOrder(Order order) async {
+  Future<StockEntry?> deleteOrder(StockEntry order) async {
     try {
       final clientResponse =
           await ordersTable.delete().eq('id', order.id!).select();
       await orderDetailsTable.delete().eq('order_id', order.id!);
-      return Order.fromMap(clientResponse.first);
+      return StockEntry.fromMap(clientResponse.first);
     } catch (e) {
       throw Exception('Error deleting order: $e');
     }
   }
 
   @override
-  Future<List<OrderDetail>> readOrderDetails(int orderId) async {
+  Future<List<StockEntryDetail>> readOrderDetails(int orderId) async {
     try {
       final clientResponse = await orderDetailsTable.select().eq(
         'order_id',
         orderId,
       );
-      return clientResponse.map((e) => OrderDetail.fromMap(e)).toList();
+      return clientResponse.map((e) => StockEntryDetail.fromMap(e)).toList();
     } catch (e) {
       throw Exception('Error reading order details: $e');
     }
   }
 
   @override
-  Future<List<Order>> readOrders() async {
+  Future<List<StockEntry>> readOrders() async {
     try {
       final clientResponse = await ordersTable.select();
-      return clientResponse.map((e) => Order.fromMap(e)).toList();
+      return clientResponse.map((e) => StockEntry.fromMap(e)).toList();
     } catch (e) {
       throw Exception('Error reading orders: $e');
     }

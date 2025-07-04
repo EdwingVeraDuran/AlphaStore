@@ -1,7 +1,7 @@
 import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
 import 'package:alpha_store/core/util/format_util.dart';
-import 'package:alpha_store/features/products/domain/entities/order.dart';
-import 'package:alpha_store/features/products/domain/entities/order_item.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
 import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
 import 'package:alpha_store/features/products/presentation/widgets/orders/order_item_list.dart';
@@ -17,7 +17,7 @@ class CreateOrderSheet extends StatefulWidget {
 
 class _CreateOrderSheetState extends State<CreateOrderSheet> {
   final _productCodeController = TextEditingController();
-  List<OrderItem> products = [];
+  List<StockEntryItem> products = [];
 
   bool codeExists(String productCode) =>
       products.any((e) => e.product.code == productCode);
@@ -43,11 +43,11 @@ class _CreateOrderSheetState extends State<CreateOrderSheet> {
       productCode,
     );
     if (product == null) return;
-    products.add(OrderItem(product: product, amount: 1));
+    products.add(StockEntryItem(product: product, amount: 1));
     setState(() {});
   }
 
-  void removeItem(OrderItem item) {
+  void removeItem(StockEntryItem item) {
     setState(() {
       products.remove(item);
     });
@@ -56,7 +56,7 @@ class _CreateOrderSheetState extends State<CreateOrderSheet> {
   void createOrder() {
     if (products.isEmpty) return;
 
-    final order = Order(id: null, createdAt: DateTime.now(), total: total);
+    final order = StockEntry(id: null, createdAt: DateTime.now(), total: total);
 
     closeSheet(context);
 

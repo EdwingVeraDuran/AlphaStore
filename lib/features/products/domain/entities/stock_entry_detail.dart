@@ -1,6 +1,6 @@
-import 'package:alpha_store/features/products/domain/entities/order_item.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
 
-class OrderDetail {
+class StockEntryDetail {
   final int? id;
   final int orderId;
   final int productId;
@@ -8,7 +8,7 @@ class OrderDetail {
   final double unitPrice;
   final double subtotal;
 
-  OrderDetail({
+  StockEntryDetail({
     required this.id,
     required this.orderId,
     required this.productId,
@@ -27,8 +27,8 @@ class OrderDetail {
     };
   }
 
-  factory OrderDetail.fromMap(Map<String, dynamic> map) {
-    return OrderDetail(
+  factory StockEntryDetail.fromMap(Map<String, dynamic> map) {
+    return StockEntryDetail(
       id: map['id'],
       orderId: map['order_id'],
       productId: map['product_id'],
@@ -38,8 +38,8 @@ class OrderDetail {
     );
   }
 
-  factory OrderDetail.fromItem(OrderItem orderItem, int orderId) {
-    return OrderDetail(
+  factory StockEntryDetail.fromItem(StockEntryItem orderItem, int orderId) {
+    return StockEntryDetail(
       id: null,
       orderId: orderId,
       productId: orderItem.product.id!,

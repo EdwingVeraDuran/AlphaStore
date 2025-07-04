@@ -1,11 +1,11 @@
 import 'package:alpha_store/core/layout/widgets/table_display.dart';
 import 'package:alpha_store/core/shared/widgets/table_widgets.dart';
 import 'package:alpha_store/core/util/format_util.dart';
-import 'package:alpha_store/features/products/domain/entities/order.dart';
+import 'package:alpha_store/features/products/domain/entities/stock_entry.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class OrdersTable extends StatelessWidget {
-  final List<Order> data;
+  final List<StockEntry> data;
   OrdersTable(this.data, {super.key});
 
   final _tableHeader = TableHeader(
