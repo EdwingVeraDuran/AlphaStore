@@ -41,7 +41,7 @@ class _CustomerViewState extends State<CustomerView> {
                       context: context,
                       builder: (context) => CreateCustomerSheet(),
                       position: OverlayPosition.right,
-                    ).then((value) => print(value)),
+                    ),
               ),
             ],
           ),

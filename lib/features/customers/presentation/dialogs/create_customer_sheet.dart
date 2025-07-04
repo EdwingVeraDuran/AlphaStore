@@ -1,5 +1,9 @@
 import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
+import 'package:alpha_store/core/shared/entities/form_error.dart';
+import 'package:alpha_store/core/shared/widgets/error_toast.dart';
+import 'package:alpha_store/core/util/toast_utils.dart';
 import 'package:alpha_store/features/customers/domain/entities/customer.dart';
+import 'package:alpha_store/features/customers/domain/repos/customer_repo.dart';
 import 'package:alpha_store/features/customers/presentation/bloc/customer_bloc.dart';
 import 'package:alpha_store/features/customers/presentation/bloc/customer_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,8 +22,54 @@ class _CreateCustomerSheetState extends State<CreateCustomerSheet> {
   final _addressController = TextEditingController();
   final _hoodController = TextEditingController();
 
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _addressController.dispose();
+    _hoodController.dispose();
+    super.dispose();
+  }
+
   void createCustomer() async {
-    //TODO: Add validation
+    final name = _nameController.text;
+    final phone = _phoneController.text;
+    final address = _addressController.text;
+    final hood = _hoodController.text;
+
+    FormError? error;
+
+    if (name.isEmpty) {
+      error = FormError.emptyField('Nombre');
+    } else if (phone.isEmpty) {
+      error = FormError.emptyField('Teléfono');
+    } else if (address.isEmpty) {
+      error = FormError.emptyField('Dirección');
+    } else if (hood.isEmpty) {
+      error = FormError.emptyField('Barrio');
+    } else if (name.length < 3) {
+      error = FormError.minLength('Nombre', 3);
+    } else if (phone.length < 10) {
+      error = FormError.minLength('Teléfono', 10);
+    } else if (phone.length > 10) {
+      error = FormError.maxLength('Teléfono', 10);
+    } else if (address.length < 5) {
+      error = FormError.minLength('Dirección', 5);
+    } else if (hood.length < 3) {
+      error = FormError.minLength('Barrio', 3);
+    } else if (await context.read<CustomerRepo>().customerPhoneExists(phone)) {
+      error = FormError.custom('El número de teléfono ya existe.');
+    }
+
+    if (error != null) {
+      if (!mounted) return;
+      safeShowToast(
+        context,
+        builder:
+            (context, overlay) => ErrorToast(overlay: overlay, status: error!),
+      );
+      return;
+    }
 
     final customer = Customer(
       name: _nameController.text,
@@ -27,8 +77,11 @@ class _CreateCustomerSheetState extends State<CreateCustomerSheet> {
       address: _addressController.text,
       hood: _hoodController.text,
     );
-    context.read<CustomerBloc>().add(AddCustomer(customer));
+
+    if (!mounted) return;
+
     closeSheet(context);
+    context.read<CustomerBloc>().add(AddCustomer(customer));
   }
 
   @override
