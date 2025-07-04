@@ -32,7 +32,16 @@ class _CustomerViewState extends State<CustomerView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SearchField(),
+              SearchField(
+                placeholder: 'Buscar cliente',
+                onChanged:
+                    (query) =>
+                        query.isEmpty
+                            ? context.read<CustomerBloc>().add(LoadCustomers())
+                            : context.read<CustomerBloc>().add(
+                              SearchCustomer(query),
+                            ),
+              ),
               ActionButton(
                 label: 'Crear cliente',
                 icon: LucideIcons.circlePlus,

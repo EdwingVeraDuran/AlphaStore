@@ -28,7 +28,14 @@ class _ProductsSectionState extends State<ProductsSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SearchField(),
+            SearchField(
+              placeholder: 'Buscar producto',
+              onChanged:
+                  (query) =>
+                      query.isEmpty
+                          ? context.read<ProductsCubit>().readProducts()
+                          : context.read<ProductsCubit>().searchProducts(query),
+            ),
             ActionButton(
               label: 'Crear producto',
               icon: LucideIcons.circlePlus,
