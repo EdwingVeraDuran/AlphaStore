@@ -1,5 +1,5 @@
 import 'package:alpha_store/core/shared/widgets/action_button.dart';
-import 'package:alpha_store/features/products/presentation/dialogs/create_category_popover.dart';
+import 'package:alpha_store/features/categories/presentation/dialogs/create_category_popover.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class CategoryPopover extends StatelessWidget {

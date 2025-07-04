@@ -1,4 +1,4 @@
-import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
+import 'package:alpha_store/features/stock_entry/domain/entities/stock_entry_item.dart';
 
 class StockEntryDetail {
   final int? id;

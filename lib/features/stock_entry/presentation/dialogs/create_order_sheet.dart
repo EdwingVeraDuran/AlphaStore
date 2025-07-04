@@ -1,10 +1,10 @@
 import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
 import 'package:alpha_store/core/util/format_util.dart';
-import 'package:alpha_store/features/products/domain/entities/stock_entry.dart';
-import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
+import 'package:alpha_store/features/stock_entry/domain/entities/stock_entry.dart';
+import 'package:alpha_store/features/stock_entry/domain/entities/stock_entry_item.dart';
 import 'package:alpha_store/features/products/domain/repos/products_repo.dart';
-import 'package:alpha_store/features/products/presentation/cubit/orders/orders_cubit.dart';
-import 'package:alpha_store/features/products/presentation/widgets/orders/order_item_list.dart';
+import 'package:alpha_store/features/stock_entry/presentation/bloc/orders_cubit.dart';
+import 'package:alpha_store/features/stock_entry/presentation/widgets/order_item_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 

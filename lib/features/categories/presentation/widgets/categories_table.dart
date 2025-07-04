@@ -1,6 +1,6 @@
 import 'package:alpha_store/core/layout/widgets/table_display.dart';
 import 'package:alpha_store/core/shared/widgets/table_widgets.dart';
-import 'package:alpha_store/features/products/domain/entities/category.dart';
+import 'package:alpha_store/features/categories/domain/entities/category.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class CategoriesTable extends StatelessWidget {

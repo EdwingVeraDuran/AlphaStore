@@ -1,5 +1,5 @@
 import 'package:alpha_store/core/util/format_util.dart';
-import 'package:alpha_store/features/products/domain/entities/stock_entry_item.dart';
+import 'package:alpha_store/features/stock_entry/domain/entities/stock_entry_item.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class OrderItemList extends StatelessWidget {

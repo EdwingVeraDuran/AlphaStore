@@ -1,5 +1,5 @@
-import 'package:alpha_store/features/products/domain/entities/category.dart';
-import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
+import 'package:alpha_store/features/categories/domain/entities/category.dart';
+import 'package:alpha_store/features/categories/domain/repos/categories_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseCategoriesRepo extends CategoriesRepo {

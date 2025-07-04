@@ -1,6 +1,8 @@
-import 'package:alpha_store/features/products/domain/repos/categories_repo.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories/categories_state.dart';
+import 'package:alpha_store/features/categories/domain/repos/categories_repo.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+//TODO: Replace Cubit for Bloc
 
 class CategoriesCubit extends Cubit<CategoriesState> {
   final CategoriesRepo categoriesRepo;

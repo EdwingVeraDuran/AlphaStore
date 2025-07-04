@@ -2,11 +2,11 @@ import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
 import 'package:alpha_store/core/shared/entities/form_error.dart';
 import 'package:alpha_store/core/shared/widgets/error_toast.dart';
 import 'package:alpha_store/core/util/toast_utils.dart';
-import 'package:alpha_store/features/products/domain/entities/category.dart';
+import 'package:alpha_store/features/categories/domain/entities/category.dart';
 import 'package:alpha_store/features/products/domain/entities/product.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
-import 'package:alpha_store/features/products/presentation/cubit/categories/categories_state.dart';
-import 'package:alpha_store/features/products/presentation/cubit/products/products_cubit.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_cubit.dart';
+import 'package:alpha_store/features/categories/presentation/bloc/categories_state.dart';
+import 'package:alpha_store/features/products/presentation/cubit/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
