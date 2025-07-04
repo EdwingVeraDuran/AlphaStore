@@ -72,10 +72,10 @@ class _CreateCustomerSheetState extends State<CreateCustomerSheet> {
     }
 
     final customer = Customer(
-      name: _nameController.text,
-      phone: _phoneController.text,
-      address: _addressController.text,
-      hood: _hoodController.text,
+      name: name,
+      phone: phone,
+      address: address,
+      hood: hood,
     );
 
     if (!mounted) return;

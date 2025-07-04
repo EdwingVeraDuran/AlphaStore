@@ -1,4 +1,7 @@
 import 'package:alpha_store/core/layout/widgets/sheet_layout.dart';
+import 'package:alpha_store/core/shared/entities/form_error.dart';
+import 'package:alpha_store/core/shared/widgets/error_toast.dart';
+import 'package:alpha_store/core/util/toast_utils.dart';
 import 'package:alpha_store/features/products/domain/entities/category.dart';
 import 'package:alpha_store/features/products/domain/entities/product.dart';
 import 'package:alpha_store/features/products/presentation/cubit/categories/categories_cubit.dart';
@@ -44,46 +47,58 @@ class _CreateProductSheetState extends State<CreateProductSheet> {
     final buyPrice = _buyPriceController;
     final sellPrice = _sellPriceController;
 
-    if (code.isEmpty ||
-        name.isEmpty ||
-        stock == null ||
-        categoryId == null ||
-        buyPrice == null ||
-        sellPrice == null) {
-      return;
+    FormError? error;
+
+    if (code.isEmpty) {
+      error = FormError.emptyField('Código');
+    } else if (name.isEmpty) {
+      error = FormError.emptyField('Nombre');
+    } else if (stock == null) {
+      error = FormError.emptyField('Unidades');
+    } else if (categoryId == null) {
+      error = FormError.emptyField('Categoría');
+    } else if (buyPrice == null) {
+      error = FormError.emptyField('Precio compra');
+    } else if (sellPrice == null) {
+      error = FormError.emptyField('Precio venta');
+    } else if (stock < 0) {
+      error = FormError.invalidNumber('Unidades');
+    } else if (buyPrice < 0) {
+      error = FormError.invalidNumber('Precio compra');
+    } else if (sellPrice < 0) {
+      error = FormError.invalidNumber('Precio venta');
+    } else if (code.length < 3) {
+      error = FormError.minLength('Código', 3);
+    } else if (code.length > 10) {
+      error = FormError.maxLength('Código', 10);
+    } else if (name.length < 3) {
+      error = FormError.minLength('Nombre', 3);
+    } else if (code.length > 50) {
+      error = FormError.maxLength('Nombre', 50);
+    } else if (await context.read<ProductsCubit>().productCodeExists(code)) {
+      error = FormError.custom('El código de producto ya existe');
     }
 
-    if (stock <= 0 || buyPrice <= 0 || sellPrice <= 0) {
+    if (error != null) {
+      if (!mounted) return;
+      safeShowToast(
+        context,
+        builder:
+            (context, overlay) => ErrorToast(overlay: overlay, status: error!),
+      );
       return;
     }
-
-    if (code.length < 3 || name.length < 3) {
-      return;
-    }
-
-    if (code.length > 10 || name.length > 50) {
-      return;
-    }
-
-    if (await context.read<ProductsCubit>().productCodeExists(code)) {
-      return;
-    }
-
-    //TODO: Complete validation with toast
 
     final product = Product(
       code: code,
       name: name,
-      stock: stock,
-      categoryId: categoryId,
-      buyPrice: buyPrice,
-      sellPrice: sellPrice,
+      stock: stock!,
+      categoryId: categoryId!,
+      buyPrice: buyPrice!,
+      sellPrice: sellPrice!,
     );
 
-    createProduct(product);
-  }
-
-  void createProduct(Product product) {
+    if (!mounted) return;
     closeSheet(context);
     context.read<ProductsCubit>().createProduct(product);
   }
