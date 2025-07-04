@@ -1,4 +1,3 @@
-import 'package:alpha_store/core/layout/widgets/hidden_scroll.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class TableDisplay extends StatefulWidget {
