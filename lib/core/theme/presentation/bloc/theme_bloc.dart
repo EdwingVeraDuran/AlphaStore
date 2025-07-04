@@ -3,6 +3,7 @@ import 'package:alpha_store/core/theme/domain/entities/app_mode.dart';
 import 'package:alpha_store/core/theme/domain/repos/theme_repo.dart';
 import 'package:alpha_store/core/theme/presentation/bloc/theme_event.dart';
 import 'package:alpha_store/core/theme/presentation/bloc/theme_state.dart';
+import 'package:alpha_store/core/util/app_logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
@@ -25,7 +26,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
 
   @override
   void onError(Object error, StackTrace stackTrace) {
-    print('$error, $stackTrace');
+    AppLogger().error('ThemeBloc Error', error, stackTrace);
     super.onError(error, stackTrace);
   }
 

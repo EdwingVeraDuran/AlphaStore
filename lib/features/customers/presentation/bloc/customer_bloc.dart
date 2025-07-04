@@ -1,4 +1,5 @@
 import 'package:alpha_store/core/shared/entities/operation_status.dart';
+import 'package:alpha_store/core/util/app_logger.dart';
 import 'package:alpha_store/features/customers/domain/repos/customer_repo.dart';
 import 'package:alpha_store/features/customers/presentation/bloc/customer_event.dart';
 import 'package:alpha_store/features/customers/presentation/bloc/customer_state.dart';
@@ -17,7 +18,7 @@ class CustomerBloc extends Bloc<CustomerEvent, CustomerState> {
 
   @override
   void onError(Object error, StackTrace stackTrace) {
-    print('$error, $stackTrace');
+    AppLogger().error('CustomerBloc Error', error, stackTrace);
     super.onError(error, stackTrace);
   }
 
